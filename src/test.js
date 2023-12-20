@@ -10,6 +10,18 @@ const norco = await Vender.create({
     rep: 'Daryn Smith',
 });
 
+const addVender = () => { //nameIn, repIn, websiteIn, logoIn, notesIn, minOrderIn
+    Vender.create({
+        name: nameIn,
+        rep: repIn,
+        website: websiteIn,
+        logo: logoIn,
+        notes: notesIn,
+        minOrder: minOrderIn,
+    })
+}
+
+
 const filter = await Item.create({
     name: 'filter',
 });

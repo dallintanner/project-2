@@ -3,9 +3,13 @@ import url from 'url';
 import util, { deprecate } from 'util';
 import connectToDB from './db.js';
 
-const db = await connectToDB('postgresql:///items'); // I'm missing something here
+const db = await connectToDB('postgresql:///inventory'); // I'm missing something here
 
-class Item extends Model {}
+class Item extends Model {
+    [util.inspect.custom]() {
+        return this.toJSON();
+    }
+}
 Item.init(
     {
         id: {
@@ -58,7 +62,11 @@ Item.init(
     },
 );
 
-class Vender extends Model {}
+class Vender extends Model {
+    [util.inspect.custom]() {
+        return this.toJSON();
+    }
+}
 Vender.init(
     {
         id: {
