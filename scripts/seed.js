@@ -38,18 +38,43 @@ const routerBit = await Item.create({
     max: 2,
 });
 
-// console.log(amazon);
-// console.log(oldDominion);
-// console.log(flapDisc);
-// console.log(routerBit);
+flapDisc.setVender(amazon);
+
+// async function showByVenderEager(){
+//     const itms = await Item.findAll({include: Vender});
+
+//     for (const itm of itms){
+//         const vend = itm.venderId;
+//         if(vend){
+//             console.log(itm.name, vend.name);
+//         } else {
+//              console.log(itm.name, '-');
+//         }
+//     }
+// }
+
+// async function showByVender(){
+//     const itms = await Item.findAll();
+
+//     itms.forEach(async (itm) => {
+//         const vend = await itm.getVender();
+//         if(vend){
+//             console.log(itm.name, vend.name)
+//         } else {
+//             console.log(itm.name, '-');
+//         }
+//     });
+// }
+
+// showByVenderEager();
 
 const allVenders = await Vender.findAll()
+console.log(allVenders);
 
-    console.log(allVenders);
+const allItems = await Item.findAll()
+console.log(allItems);
 
-// for(let each of Item){
-//     console.log(each);
-// }
+// const itemVender = await Item.findAll()
 
 await db.close();
 console.log('Finished seeding database!');
