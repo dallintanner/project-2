@@ -71,6 +71,10 @@ Vender.init(
             allowNull: false,
             unique: true,
         },
+        rep: {
+            type: DataTypes.STRING(20),
+            allowNull: true,
+        },
         website: {
             type: DataTypes.STRING(50),
             allowNull: true,
@@ -103,4 +107,4 @@ if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
     console.log('Finished syncing database!');
 }
 
-export {Item, Vender};
+export {Item, Vender, db};

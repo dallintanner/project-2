@@ -13,6 +13,8 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(session({secret: 'ssshhhh', saveUninitialized: true, resave: false}));
 
-
+// app.get('/', async (req, res) => {
+//     const {vender}
+// })
 
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));
