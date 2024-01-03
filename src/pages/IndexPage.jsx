@@ -1,9 +1,10 @@
-import { Vender, Item } from "../model";
+// import { Vender, Item } from "../model";
+import { useLoaderData } from "react-router-dom";
 
 export default function IndexPage(){
-
-    const listVenders = Vender.map(({venderId, name,}) => (
-        <li key={venderId}>
+    const {venders} = useLoaderData();
+    const listVenders = venders.map(({id, name,}) => (
+        <li key={id}>
             <h2>{name}</h2>
         </li>
     ));

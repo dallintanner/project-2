@@ -13,8 +13,9 @@ app.use(express.urlencoded({extended: false}));
 app.use(express.json());
 app.use(session({secret: 'ssshhhh', saveUninitialized: true, resave: false}));
 
-// app.get('/', async (req, res) => {
-//     const {vender}
-// })
+app.get('/api/venders', async (req, res) => {
+    const allVenders = await Vender.findAll();
+    res.json(allVenders);
+});
 
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));
