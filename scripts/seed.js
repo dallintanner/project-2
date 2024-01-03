@@ -26,19 +26,22 @@ const flapDisc = await Item.create({
     name: 'Flap Disc',
     min: 10,
     max: 100,
+    venderId: 3,
 });
 const respFilter = await Item.create({
     name: 'Respirator Filter',
     min: 2,
     max: 4,
+    venderId: 2,
 });
 const routerBit = await Item.create({
     name: 'Router Bit',
     min: 1,
     max: 2,
+    venderId: 1,
 });
 
-flapDisc.setVender(amazon);
+//flapDisc.setVender(amazon);
 
 // async function showByVenderEager(){
 //     const itms = await Item.findAll({include: Vender});

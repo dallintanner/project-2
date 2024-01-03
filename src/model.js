@@ -1,4 +1,4 @@
-import {DataTypes, Model} from 'sequelize';
+import {DataTypes, INTEGER, Model} from 'sequelize';
 import url from 'url';
 import util, { deprecate } from 'util';
 import connectToDB from './db.js';
@@ -54,6 +54,10 @@ Item.init(
         price: {
             type: DataTypes.INTEGER(4),
             defaultValue: 0,
+        },
+        venderId: {
+            type: DataTypes.INTEGER,
+            allowNull: true,
         },
     },
     {

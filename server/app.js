@@ -18,4 +18,10 @@ app.get('/api/venders', async (req, res) => {
     res.json(allVenders);
 });
 
+app.get('/api/venderItems/:itemId', async (req, res ) => {
+    const {itemId} = req.params;
+    const item = await Item.findAll({where: {venderId: itemId}});
+    res.json(item);
+})
+
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));

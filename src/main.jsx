@@ -12,7 +12,7 @@ const router = createBrowserRouter(
 
       {/* Homepage */}
       <Route 
-      index 
+      index
       element={<IndexPage/>}
       loader={async () => {
         const res = await axios.get('/api/venders');
@@ -20,7 +20,6 @@ const router = createBrowserRouter(
       }}
       />
       
-
     </Route>
   )
 );
