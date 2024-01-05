@@ -5,15 +5,15 @@ import App from './App.jsx';
 import './index.css';
 import IndexPage from './pages/IndexPage.jsx';
 import axios from 'axios';
+import 'bootstrap/dist/css/bootstrap.css';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<App/>}>
 
       {/* Homepage */}
-      <Route 
-      index
-      element={<IndexPage/>}
+      <Route
+      index element={<IndexPage/>}
       loader={async () => {
         const res = await axios.get('/api/venders');
         return {venders: res.data};
