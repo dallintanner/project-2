@@ -25,7 +25,10 @@ app.get('/api/venderItems/:itemId', async (req, res ) => {
 })
 
 app.post('/api/newVender', async (req, res) => {
-    console.log(req.body);
+    // console.log(req.body);
+
+    // const newestVender = Vender.create(req.body);
+
     res.json({success: true});
 })
 

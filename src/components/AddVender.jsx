@@ -41,11 +41,11 @@ export default function AddVender() {
                         website: websiteValue,
                         }
                         const res = await axios.post('/api/newVender', newVender);
-                        console.log(newVender);
-                        console.log(res);
+                        // console.log(newVender);
+                        // console.log(res);
                         if(res.data.success === true){
                             handleClose();
-                            console.log('hit');
+                            // console.log('hit');
                         }
                         }
                     }

@@ -1,6 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import VenderDetails from "../components/VenderDetails";
-import AddVender from "../components/AddVenderModal";
+import AddVender from "../components/AddVender";
 
 export default function IndexPage(){
     const {venders} = useLoaderData();
