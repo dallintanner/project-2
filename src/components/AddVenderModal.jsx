@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
+import axios from "axios";
 
 export default function AddVender() {
     //for modal
@@ -13,12 +14,6 @@ export default function AddVender() {
     const [repValue, setRepValue] = useState('');
     const [notesValue, setNotesValue] = useState('');
     const [websiteValue, setWebsiteValue] = useState('');
-
-    const handleSubmit = async (event, formData) => {
-        event.preventDefault();
-
-        const res = await axios.get(/api/, formData);
-    };
 
     return (
         <>
@@ -37,7 +32,7 @@ export default function AddVender() {
                     <Modal.Title>Add a New Vender</Modal.Title>
                 </Modal.Header>
                 <form
-                    onSubmit={(event) => {
+                    onSubmit={async (event) => {
                         event.preventDefault()
                         const newVender = {
                         vender: venderValue,
@@ -45,8 +40,13 @@ export default function AddVender() {
                         notes: notesValue,
                         website: websiteValue,
                         }
+                        const res = await axios.post('/api/newVender', newVender);
                         console.log(newVender);
-                        handleSubmit
+                        console.log(res);
+                        if(res.data.success === true){
+                            handleClose();
+                            console.log('hit');
+                        }
                         }
                     }
                 >
@@ -85,7 +85,7 @@ export default function AddVender() {
                         <Button variant="secondary" onClick={handleClose}>
                             Cancel
                         </Button>
-                        <Button type="submit" variant="primary" onSubmit={handleSubmit} onClick={handleClose}>Save</Button>
+                        <Button type="submit" variant="primary">Save</Button>
                     </Modal.Footer>
                 </form>
             </Modal>

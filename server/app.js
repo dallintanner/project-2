@@ -24,4 +24,9 @@ app.get('/api/venderItems/:itemId', async (req, res ) => {
     res.json(item);
 })
 
+app.post('/api/newVender', async (req, res) => {
+    console.log(req.body);
+    res.json({success: true});
+})
+
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));

@@ -12,7 +12,7 @@ export default function VenderDetails({name, venderId}){
             <h2>{name}</h2>
             {items.map(item => {
                 return (
-                    <li key = {item.Id}>{item.name}</li>
+                    <li key = {item.id}>{item.name}</li>
                 )
             })}
         </div>
