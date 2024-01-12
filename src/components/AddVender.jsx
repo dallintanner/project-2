@@ -35,13 +35,13 @@ export default function AddVender() {
                     onSubmit={async (event) => {
                         event.preventDefault()
                         const newVender = {
-                        vender: venderValue,
+                        name: venderValue,
                         rep: repValue,
                         notes: notesValue,
                         website: websiteValue,
                         }
                         const res = await axios.post('/api/newVender', newVender);
-                        // console.log(newVender);
+                        console.log(newVender);
                         // console.log(res);
                         if(res.data.success === true){
                             handleClose();
