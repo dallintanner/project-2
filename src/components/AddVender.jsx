@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function AddVender() {
+export default function AddVender(props) {
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -42,8 +42,9 @@ export default function AddVender() {
                         }
                         const res = await axios.post('/api/newVender', newVender);
                         console.log(newVender);
-                        // console.log(res);
+                        console.log(res);
                         if(res.data.success === true){
+                            props.newVender([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
                             handleClose();
                             // console.log('hit');
                         }
