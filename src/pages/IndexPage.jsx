@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import VenderDetails from "../components/VenderDetails";
+import VenderDetails from "../components/VenderList";
 import AddVender from "../components/AddVender";
 import { useState } from "react";
 
@@ -15,7 +15,6 @@ export default function IndexPage(){
             <h1>Inventory Manager App</h1>
             <ul>{listVenders}</ul>
 
-            {/* <>{AddVender()}</> */}
             <AddVender newVender = {setVenders} vender = {vender}/>
         </>
     );
