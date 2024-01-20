@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function ShowDetails(name, id) {
+export default function ShowDetails({name, venderId}) {
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -86,8 +86,8 @@ export default function ShowDetails(name, id) {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => {
-                            console.log(id)
-                            axios.delete(`/api/venderItems/${id}`).then(() => {
+                            //console.log(id)
+                            axios.delete(`/api/venderItems/${venderId}`).then(() => {
                                 console.log("Item Deleted");
                             })
                         }}>

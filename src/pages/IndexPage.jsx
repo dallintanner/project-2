@@ -6,8 +6,10 @@ import { useState } from "react";
 
 export default function IndexPage(){
     const {venders} = useLoaderData(); // pull data from database
+    //console.log(venders);
     const [vender, setVenders] = useState(venders); // put this data into state
-    const listVenders = vender.map(({id, name,}) => (  //using this state data and mapping over it
+    //console.log(vender);
+    const listVenders = vender.map(({id, name,}, index) => (  //using this state data and mapping over it
        <ListVenders key = {id} name = {name} venderId = {id}/>
     ));
 
