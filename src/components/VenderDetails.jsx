@@ -3,16 +3,22 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function AddVender(props) {
+export default function ShowDetails(props) {
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-    return (
-        <>
+     //for form
+     const [venderValue, setVenderValue] = useState('');
+     const [repValue, setRepValue] = useState('');
+     const [notesValue, setNotesValue] = useState('');
+     const [websiteValue, setWebsiteValue] = useState('');
+ 
+     return (
+         <>
             <Button varient="primary" onClick={handleShow}>
-                  
+                {props}
             </Button>
 
             <Modal
@@ -23,7 +29,7 @@ export default function AddVender(props) {
                 centered
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Add a New Vender</Modal.Title>
+                    <Modal.Title>Vender Details</Modal.Title>
                 </Modal.Header>
                 <form
                     onSubmit={async (event) => {
