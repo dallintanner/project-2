@@ -47,5 +47,8 @@ console.log(allVenders);
 const allItems = await Item.findAll()
 console.log(allItems);
 
+const deleteVender = await Item.destroy();
+console.log(`Deleted ${Item}`);
+
 await db.close();
 console.log('Finished seeding database!');

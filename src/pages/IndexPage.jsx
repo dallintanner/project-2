@@ -6,8 +6,8 @@ import { useState } from "react";
 
 export default function IndexPage(){
     const {venders} = useLoaderData(); // pull data from database
-    const [vender, setVenders] = useState(venders); // put this date into state
-    const listVenders = vender.map(({id, name,}) => ( // using this state data and mapping over it
+    const [vender, setVenders] = useState(venders); // put this data into state
+    const listVenders = vender.map(({id, name,}) => (  //using this state data and mapping over it
        <ListVenders key = {id} name = {name} venderId = {id}/>
     ));
 
@@ -15,7 +15,6 @@ export default function IndexPage(){
         <>
             <h1>Inventory Manager App</h1>
             <ul>{listVenders}</ul>
-            {/* <ShowDetails/> */}
 
             <AddVender newVender = {setVenders} vender = {vender}/>
         </>

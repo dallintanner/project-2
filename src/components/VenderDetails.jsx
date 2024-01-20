@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function ShowDetails(props) {
+export default function ShowDetails(name, id) {
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -18,7 +18,7 @@ export default function ShowDetails(props) {
      return (
          <>
             <Button varient="primary" onClick={handleShow}>
-                {props}
+                {name}
             </Button>
 
             <Modal
@@ -27,9 +27,11 @@ export default function ShowDetails(props) {
                 backdrop="static"
                 keyboard={false}
                 centered
+                size="xl"
+                //dialogClassName="modal-90w"       figure out how to make it bigger
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Vender Details</Modal.Title>
+                    <Modal.Title>{name}</Modal.Title>
                 </Modal.Header>
                 <form
                     onSubmit={async (event) => {
@@ -83,6 +85,14 @@ export default function ShowDetails(props) {
                         />
                     </Modal.Body>
                     <Modal.Footer>
+                        <Button variant="secondary" onClick={() => {
+                            console.log(id)
+                            axios.delete(`/api/venderItems/${id}`).then(() => {
+                                console.log("Item Deleted");
+                            })
+                        }}>
+                            Delete
+                        </Button>
                         <Button variant="secondary" onClick={handleClose}>
                             Cancel
                         </Button>

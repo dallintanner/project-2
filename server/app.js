@@ -32,4 +32,19 @@ app.post('/api/newVender', async (req, res) => {
     res.json({success: true, newVender: newestVender});
 })
 
+app.delete('/api/VenderDetails', async (req, res) => {
+    const venderToDelete = await vender.findByPk(req.body);
+    await venderToDelete.destroy();
+})
+
+app.delete('/api/venderItems/:venderID', async (req, res) => {
+    const {venderID} = req.params;
+    await Vender.destroy({
+        where: {
+            id: venderID
+        }
+    })
+    res.json({sucess: true});
+})
+
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));
