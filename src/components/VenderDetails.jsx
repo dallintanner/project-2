@@ -3,17 +3,17 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function ShowDetails({name, venderId}) {
+export default function ShowDetails({id, name, venderId, vender, setVenders, index}, props) {
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
      //for form
-     const [venderValue, setVenderValue] = useState('');
-     const [repValue, setRepValue] = useState('');
-     const [notesValue, setNotesValue] = useState('');
-     const [websiteValue, setWebsiteValue] = useState('');
+    //  const [venderValue, setVenderValue] = useState('');
+    //  const [repValue, setRepValue] = useState('');
+    //  const [notesValue, setNotesValue] = useState('');
+    //  const [websiteValue, setWebsiteValue] = useState('');
  
      return (
          <>
@@ -45,11 +45,11 @@ export default function ShowDetails({name, venderId}) {
                         const res = await axios.post('/api/newVender', newVender);
                         console.log(newVender);
                         console.log(res);
-                        if(res.data.success === true){
-                            props.newVender([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
-                            handleClose();
-                            // console.log('hit');
-                        }
+                        // if(res.data.success === true){
+                        //     props.newVender([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
+                        //     handleClose();
+                        //     // console.log('hit');
+                        // }
                         }
                     }
                 >
@@ -86,10 +86,14 @@ export default function ShowDetails({name, venderId}) {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={() => {
-                            //console.log(id)
-                            axios.delete(`/api/venderItems/${venderId}`).then(() => {
-                                console.log("Item Deleted");
-                            })
+                            console.log(vender[index])
+                            // const res = axios.delete(`/api/venderItems/${venderId}`).then(() => {
+                            //     console.log("Item Deleted");
+                            // })
+                            // if(res.data.success === true){
+                            //     handleClose();
+                            //     console.log(`deleted ${vender}`);
+                            // }
                         }}>
                             Delete
                         </Button>
