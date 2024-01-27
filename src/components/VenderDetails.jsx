@@ -3,20 +3,20 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function ShowDetails(props) { //{name, venderId, vender, setVenders, index}
+export default function ShowDetails(props) { //{name, venderId, vender, setVenders, index, rep, notes}
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
-     //for form
-    //  const [venderValue, setVenderValue] = useState('');
-    //  const [repValue, setRepValue] = useState('');
-    //  const [notesValue, setNotesValue] = useState('');
-    //  const [websiteValue, setWebsiteValue] = useState('');
- 
-     return (
-         <>
+    //for form
+    const [venderValue, setVenderValue] = useState('');
+    const [repValue, setRepValue] = useState('');
+    const [notesValue, setNotesValue] = useState('');
+    const [websiteValue, setWebsiteValue] = useState('');
+
+    return (
+        <>
             <Button varient="primary" onClick={handleShow}>
                 {props.name}
             </Button>
@@ -28,64 +28,66 @@ export default function ShowDetails(props) { //{name, venderId, vender, setVende
                 keyboard={false}
                 centered
                 size="xl"
-                //dialogClassName="modal-90w"       figure out how to make it bigger
+            //dialogClassName="modal-90w"       figure out how to make it bigger
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>{name}</Modal.Title>
+                    <Modal.Title>{ }</Modal.Title>
                 </Modal.Header>
                 <form
                     onSubmit={async (event) => {
                         event.preventDefault()
                         const setVender = {
-                        name: venderValue,
-                        rep: repValue,
-                        notes: notesValue,
-                        website: websiteValue,
+                            name: venderValue,
+                            rep: repValue,
+                            notes: notesValue,
+                            website: websiteValue,
                         }
                         const res = await axios.post('/api/newVender', setVender);
-                        console.log(setVender);
-                        console.log(res);
-                        // if(res.data.success === true){
-                        //     props.setVender([...props.vender, res.data.setVender]);//spread operator creates copy of vender object
-                        //     handleClose();
-                        //     // console.log('hit');
-                        // }
+                        // console.log(setVender);
+                        // console.log(res);
+                        if(res.data.success === true){
+                            props.setVender([...props.vender, res.data.setVender]);//spread operator creates copy of vender object
+                            handleClose();
+                            // console.log('hit');
                         }
+                    }
                     }
                 >
                     <Modal.Body>
-                        Vender: 
+                        {/* Vender: 
                         <input
                             name="newVender"
                             id="newVender"
                             type="text"
                             required
                             onChange={(event) => setVenderValue(event.target.value)}
-                        />
-                        Rep: 
+                        /> */}
+                        Rep:
                         <input
                             name="newRep"
                             id="newRep"
                             type="text"
+                            defaultValue={`${props.rep}`}
                             onChange={(event) => setRepValue(event.target.value)}
                         />
-                        Website: 
+                        Website:
                         <input
                             name="newWebsite"
                             id="newWebsite"
-                            type="text" 
+                            type="text"
                             onChange={(event) => setWebsiteValue(event.target.value)}
                         />
-                        Notes: 
+                        Notes:
                         <textarea
                             name="newNotes"
                             id="newNotes"
                             type="text"
+                            defaultValue={`${props.notes}`}
                             onChange={(event) => setNotesValue(event.target.value)}
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={ async (event) => {
+                        <Button variant="secondary" onClick={async (event) => {
                             event.preventDefault
 
                             const res = axios.delete(`/api/venderItems/${props.venderId}`).then(() => {

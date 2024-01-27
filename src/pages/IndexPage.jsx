@@ -7,12 +7,10 @@ import { useState } from "react";
 export default function IndexPage(){
     const {venders} = useLoaderData(); // pull data from database
     const [vender, setVenders] = useState(venders); // put this data into state
-    //console.log(vender[4].id);
-    const listVenders = vender.map(({id, name,}, index) => (  //using this state data and mapping over it
-       <VenderList key = {id} name = {name} venderId = {id} vender = {vender} setVenders = {setVenders} index = {index} />
-    ));
-
-    console.log(vender);
+    //console.log(vender[0].rep);
+    const listVenders = vender.map(({id, name, rep, notes}, index) => (  //using this state data and mapping over it
+       <VenderList key = {id} name = {name} venderId = {id} vender = {vender} setVenders = {setVenders} index = {index} rep = {rep} notes = {notes} />
+       ));
 
     return(
         <>
