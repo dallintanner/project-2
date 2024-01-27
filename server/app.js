@@ -25,17 +25,19 @@ app.get('/api/venderItems/:itemId', async (req, res ) => {
 })
 
 app.post('/api/newVender', async (req, res) => {
-    console.log(req.body);
+    //console.log(req.body);
 
      const newestVender = await Vender.create(req.body);
 
     res.json({success: true, newVender: newestVender});
 })
 
-app.delete('/api/VenderDetails', async (req, res) => {
-    const venderToDelete = await vender.findByPk(req.body);
-    await venderToDelete.destroy();
-})
+// app.delete('/api/VenderDetails', async (req, res) => {
+//     const venderToDelete = await vender.findByPk(req.body);
+//     await venderToDelete.destroy();
+
+//     res.json({success: true});
+// })
 
 app.delete('/api/venderItems/:venderID', async (req, res) => {
     const {venderID} = req.params;
@@ -44,7 +46,7 @@ app.delete('/api/venderItems/:venderID', async (req, res) => {
             id: venderID
         }
     })
-    res.json({sucess: true});
+    res.json({success: true});
 })
 
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));

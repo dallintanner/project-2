@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function ShowDetails({id, name, venderId, vender, setVenders, index}, props) {
+export default function ShowDetails(props) { //{name, venderId, vender, setVenders, index}
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -18,7 +18,7 @@ export default function ShowDetails({id, name, venderId, vender, setVenders, ind
      return (
          <>
             <Button varient="primary" onClick={handleShow}>
-                {name}
+                {props.name}
             </Button>
 
             <Modal
@@ -36,17 +36,17 @@ export default function ShowDetails({id, name, venderId, vender, setVenders, ind
                 <form
                     onSubmit={async (event) => {
                         event.preventDefault()
-                        const newVender = {
+                        const setVender = {
                         name: venderValue,
                         rep: repValue,
                         notes: notesValue,
                         website: websiteValue,
                         }
-                        const res = await axios.post('/api/newVender', newVender);
-                        console.log(newVender);
+                        const res = await axios.post('/api/newVender', setVender);
+                        console.log(setVender);
                         console.log(res);
                         // if(res.data.success === true){
-                        //     props.newVender([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
+                        //     props.setVender([...props.vender, res.data.setVender]);//spread operator creates copy of vender object
                         //     handleClose();
                         //     // console.log('hit');
                         // }
@@ -85,14 +85,24 @@ export default function ShowDetails({id, name, venderId, vender, setVenders, ind
                         />
                     </Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={() => {
-                            console.log(vender[index])
-                            // const res = axios.delete(`/api/venderItems/${venderId}`).then(() => {
-                            //     console.log("Item Deleted");
-                            // })
+                        <Button variant="secondary" onClick={ async (event) => {
+                            event.preventDefault
+
+                            const res = axios.delete(`/api/venderItems/${props.venderId}`).then(() => {
+                                console.log("Item Deleted", props.index);
+
+                                const vendersCopy = props.vender.slice()
+                                vendersCopy.splice(props.index, 1)
+                                props.setVenders(vendersCopy);
+
+                            })
+
+
+                            handleClose();
+
                             // if(res.data.success === true){
                             //     handleClose();
-                            //     console.log(`deleted ${vender}`);
+                            //     //console.log(`deleted ${deletedVender}`);
                             // }
                         }}>
                             Delete

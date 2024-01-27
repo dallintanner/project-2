@@ -41,10 +41,10 @@ export default function AddVender(props) {
                         website: websiteValue,
                         }
                         const res = await axios.post('/api/newVender', newVender);
-                        // console.log(newVender);
+                        // console.log(setVenders);
                         // console.log(res);
                         if(res.data.success === true){
-                            props.newVender([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
+                            props.setVenders([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
                             handleClose();
                             // console.log('hit');
                         }
