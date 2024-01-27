@@ -3,7 +3,7 @@ import Button from 'react-bootstrap/Button';
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
 
-export default function ShowDetails(props) { //{name, venderId, vender, setVenders, index, rep, notes}
+export default function ShowDetails(props) { //{name, venderId, vender, setVenders, index, rep, notes, website}
     //for modal
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
@@ -75,6 +75,7 @@ export default function ShowDetails(props) { //{name, venderId, vender, setVende
                             name="newWebsite"
                             id="newWebsite"
                             type="text"
+                            defaultValue={`${props.website}`}
                             onChange={(event) => setWebsiteValue(event.target.value)}
                         />
                         Notes:

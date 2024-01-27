@@ -91,18 +91,10 @@ Vender.init(
             type: DataTypes.STRING(50),
             allowNull: true,
         },
-        logo: {
-            type: DataTypes.STRING,
-            allowNull: true,
-        },
         notes: {
             type: DataTypes.STRING(100),
             allowNull: true,
-        },
-        minOrder: {
-            type: DataTypes.INTEGER,
-            allowNull: true,
-        },
+        }
     },
     {
         modelName: 'vender',
