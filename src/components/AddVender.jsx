@@ -10,7 +10,7 @@ export default function AddVender(props) {
     const handleShow = () => setShow(true);
 
     //for form
-    const [venderValue, setVenderValue] = useState('');
+    const [nameValue, setNameValue] = useState('');
     const [repValue, setRepValue] = useState('');
     const [notesValue, setNotesValue] = useState('');
     const [websiteValue, setWebsiteValue] = useState('');
@@ -35,46 +35,46 @@ export default function AddVender(props) {
                     onSubmit={async (event) => {
                         event.preventDefault()
                         const newVender = {
-                        name: venderValue,
-                        rep: repValue,
-                        notes: notesValue,
-                        website: websiteValue,
+                            name: nameValue,
+                            rep: repValue,
+                            notes: notesValue,
+                            website: websiteValue,
                         }
                         const res = await axios.post('/api/newVender', newVender);
                         // console.log(setVenders);
                         // console.log(res);
-                        if(res.data.success === true){
+                        if (res.data.success === true) {
                             props.setVenders([...props.vender, res.data.newVender]);//spread operator creates copy of vender object
                             handleClose();
                             // console.log('hit');
                         }
-                        }
+                    }
                     }
                 >
                     <Modal.Body>
-                        Vender: 
+                        Vender:
                         <input
                             name="newVender"
                             id="newVender"
                             type="text"
                             required
-                            onChange={(event) => setVenderValue(event.target.value)}
+                            onChange={(event) => setNameValue(event.target.value)}
                         />
-                        Rep: 
+                        Rep:
                         <input
                             name="newRep"
                             id="newRep"
                             type="text"
                             onChange={(event) => setRepValue(event.target.value)}
                         />
-                        Website: 
+                        Website:
                         <input
                             name="newWebsite"
                             id="newWebsite"
-                            type="text" 
+                            type="url"
                             onChange={(event) => setWebsiteValue(event.target.value)}
                         />
-                        Notes: 
+                        Notes:
                         <textarea
                             name="newNotes"
                             id="newNotes"

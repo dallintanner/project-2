@@ -36,15 +36,15 @@ Item.init(
             allowNull: true,
         },
         min: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(30),
             allowNull: true,
         },
         max: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(30),
             allowNull: true,
         },
         currentStock: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(30),
             allowNull: true,
         },
         link: {
@@ -52,11 +52,11 @@ Item.init(
             allowNull: true,
         },
         price: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(30),
             defaultValue: 0,
         },
         venderId: {
-            type: DataTypes.INTEGER,
+            type: DataTypes.STRING(30),
             allowNull: true,
         },
     },
