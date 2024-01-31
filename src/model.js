@@ -53,12 +53,8 @@ Item.init(
         },
         price: {
             type: DataTypes.STRING(30),
-            defaultValue: 0,
-        },
-        venderId: {
-            type: DataTypes.STRING(30),
-            allowNull: true,
-        },
+            defaultValue: '0',
+        }
     },
     {
         modelName: 'item',
@@ -73,7 +69,7 @@ class Vender extends Model {
 }
 Vender.init(
     {
-        id: {
+        venderId: {
             type: DataTypes.INTEGER,
             autoIncrement: true,
             primaryKey: true,
@@ -110,5 +106,13 @@ if (process.argv[1] === url.fileURLToPath(import.meta.url)) {
     await db.sync();
     console.log('Finished syncing database!');
 }
+
+db.sync()
+    .then(() => {
+        console.log('Database synchronized');
+    })
+    .catch((error) => {
+        console.error('Error synchronizing database:', error);
+    });
 
 export {Item, Vender, db};

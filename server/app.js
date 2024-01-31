@@ -30,7 +30,19 @@ app.post('/api/newVender', async (req, res) => {
 })
 
 app.post('/api/newItem', async (req, res) => {
-    const newestItem = await Item.create(req.body);
+    console.log(req.body)
+    const newestItem = await Item.create({
+        name: req.body.name,
+        description: req.body.description,
+        picture: req.body.picture,
+        usage: req.body.usage,
+        min: req.body.min,
+        max: req.body.max,
+        currentStock: req.body.currentStock,
+        link: req.body.link,
+        price: req.body.price,
+        venderId: req.body.venderId
+    });
     res.json({ success: true, newItem: newestItem });
 })
 

@@ -20,7 +20,7 @@ export default function AddItem(props) {
     const [currentStockValue, setCurrentStockValue] = useState(0);
     const [linkValue, setLinkValue] = useState('');
     const [priceValue, setPriceValue] = useState('');
-    // const [venderIdValue, setVenderIdValue] = useState('');
+    const [venderIdValue, setVenderIdValue] = useState('');
 
     return (
         <>
@@ -51,13 +51,14 @@ export default function AddItem(props) {
                             currentStock: currentStockValue,
                             link: linkValue,
                             price: priceValue,
-                            venderId: venderIdValue,
+                            venderId: props.venderId,
                         }
                         console.log(newItem);
                         const res = await axios.post('/api/newItem', newItem);
                         console.log(res);
                         if (res.data.success === true) {
-                            props.setItems([...props.item, res.data.newItem]);
+                            console.log(props.items);
+                            props.setItems([...props.items, res.data.newItem]);
                             handleClose();
                         }
                     }
@@ -133,7 +134,7 @@ export default function AddItem(props) {
                             name="newVender"
                             id="newVender"
                             type="number"
-                            onChange={(event) => setVenderIdValue(event.target.value)}
+                            onChange={(event) => setVenderIdValue(props.vender[props.index])}
                         /> */}
                     </Modal.Body>
                     <Modal.Footer>
