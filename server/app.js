@@ -14,7 +14,7 @@ app.use(express.json());
 app.use(session({ secret: 'ssshhhh', saveUninitialized: true, resave: false }));
 
 app.get('/api/venders', async (req, res) => {
-    const allVenders = await Vender.findAll({include: Item});
+    const allVenders = await Vender.findAll({ include: Item });
     res.json(allVenders);
 });
 
@@ -30,7 +30,6 @@ app.post('/api/newVender', async (req, res) => {
 })
 
 app.post('/api/newItem', async (req, res) => {
-    console.log(req.body)
     const newestItem = await Item.create({
         name: req.body.name,
         description: req.body.description,
@@ -50,10 +49,10 @@ app.delete('/api/venderItems/:venderID', async (req, res) => {
     const { venderID } = req.params;
     await Vender.destroy({
         where: {
-            id: venderID
+            venderId: venderID
         }
     })
     res.json({ success: true });
-})   
+})
 
 ViteExpress.listen(app, port, () => console.log(`Server is listening on http://localhost:${port}`));

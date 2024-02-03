@@ -4,7 +4,6 @@ import { Route, RouterProvider, createBrowserRouter, createRoutesFromElements, }
 import App from './App.jsx';
 import './index.css';
 import IndexPage from './pages/IndexPage.jsx';
-import ListItems from './components/ListItems.jsx';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 

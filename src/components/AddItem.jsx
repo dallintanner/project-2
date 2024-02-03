@@ -2,7 +2,6 @@ import { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import axios from "axios";
-//import { ModalBody } from "react-bootstrap";
 
 export default function AddItem(props) {
     //for modal
@@ -20,12 +19,14 @@ export default function AddItem(props) {
     const [currentStockValue, setCurrentStockValue] = useState(0);
     const [linkValue, setLinkValue] = useState('');
     const [priceValue, setPriceValue] = useState('');
-    const [venderIdValue, setVenderIdValue] = useState('');
+    const [items, setItems] = useState(props.items)
+
+    //console.log('Items in AddItem', items);
 
     return (
         <>
             <Button varint="secondary" onClick={handleShow}>
-               + Item
+                + Item
             </Button>
 
             <Modal
@@ -53,12 +54,10 @@ export default function AddItem(props) {
                             price: priceValue,
                             venderId: props.venderId,
                         }
-                        console.log(newItem);
                         const res = await axios.post('/api/newItem', newItem);
-                        console.log(res);
                         if (res.data.success === true) {
-                            console.log(props.items);
-                            props.setItems([...props.items, res.data.newItem]);
+                            //console.log("Items:", items);
+                            setItems(...items, newItem);
                             handleClose();
                         }
                     }
@@ -129,13 +128,6 @@ export default function AddItem(props) {
                             type="number"
                             onChange={(event) => setPriceValue(event.target.value)}
                         />
-                        {/* Vender:
-                        <input
-                            name="newVender"
-                            id="newVender"
-                            type="number"
-                            onChange={(event) => setVenderIdValue(props.vender[props.index])}
-                        /> */}
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={handleClose}>

@@ -9,7 +9,7 @@ export default function IndexPage() {
     const listVenders = vender.map(({ venderId, name, rep, notes, website }, index) => (  //using this state data and mapping over it
         <VenderList key={venderId} name={name} venderId={venderId} vender={vender} setVenders={setVenders} index={index} rep={rep} notes={notes} website={website} />
     ));
-
+    
     return (
         <>  
             <h1>Inventory Manager App</h1>
